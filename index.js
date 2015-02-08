@@ -4,7 +4,6 @@
 //Possibly expand game size to more than 2 players
 //add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
 //currently might have more comments than code
-//Stop writing comments
 
 function PIG(playerName1, playerName2){
     this.player1 = new Player(playerName1);
@@ -13,8 +12,7 @@ function PIG(playerName1, playerName2){
     // easiest for 2 player game
     this.current = this.player1;
     this.next = this.player2
-    //notTurn isn't functional
-    this.notTurn = player2
+
     //could use array to track turn
     //would have to add attribute to player constructor
     //this.plyr = [player1, player2];
@@ -39,6 +37,7 @@ PIG.prototype.newRoller = function(){
     var temp = this.current;
     this.current = this.next;
     this.next = temp;
+    this.turnScore = 0;
 }//end of newRoller
 
 PIG.prototype.bankButton = function(){
@@ -46,42 +45,49 @@ PIG.prototype.bankButton = function(){
         player.bank(turnScore);
         this.newRoller();
         this.turnScore = 0;
+        return this.next;
 }//end of bankButton
 
 PIG.prototype.rollButton = function(){
     //WAITING For Selection
-        var die1 = this.roll();
-        var die2 = this.roll();
-        this.rollResult(die1, die2);
-}//end of rollButton
-// Might Be Able to Merge rollButton and rollResult
-// But it looks very neat this way
+        var die1 = Math.ceil(Math.random()*6);
+        var die2 = Math.ceil(Math.random()*6);
 
-PIG.prototype.rollResult = (die1, die2){
     if (die1 == 1 && die2 ==1){
-        player.playerScore = 0;
+        this.current.playerScore = 0;
         this.newRoller();
+        return 0;
+    }else if(die1 == 1 || die2 == 1){
+        this.newRoller();
+        return 1;
     }else if(die1 == die2){
         // player must roll again
-        this.turnScore += (die1 + die2)
-    }else if(die1 == 1 || die2 == 1){
-        this.turnScore = 0;
-        this.newRoller();
+        this.turnScore += (die1 + die2);
+        return 2;
     }else{
         this.turnScore += (die1 + die2);
-    }
-}//end rollResult
+        return 3;
+    }//end rollButton else if
+}//end rollButton
 
-PIG.prototype.roll = function(){
-    return Math.ceil(Math.random()*6);
-}//end roll w/ random num generator
+// PIG.prototype.roll = function(){
+//     return
+// }//end roll w/ random num generator
+
+// Name pending
+// PIG.prototype.currentData = function(){
+// Some function that prints/contains all the games live information
+// This function should gather the PIG instance's attribute values
+//
+// Consider storing the game data in a dictionary
+// }
 
 //Holds conditions for Victory so consider name revision
 //Soon to be PIG.victory() or PIG.victor()
-PIG.prototype.gameOver = function(){
-    if(this.player1.playerScore > 99){}
-    if(this.player2.playerScore > 99){}
-}//end gameOver
+// PIG.prototype.gameOver = function(){
+//     if(this.player1.playerScore > 99){}
+//     if(this.player2.playerScore > 99){}
+// }//end gameOver
 
 
 function Player(name){
@@ -104,22 +110,42 @@ $(document).ready(function(){
 
 
     $('#roll').on('click', function(){
-        // FIX roller() function-Done
-        game.rollButton(game.current);
-        // insert both pngs of result
-        // Also something in here should deactivate the bank Button
-        // if the player rolls doubles greater than 1
+        var result = game.rollButton(game.current);
+        //Insert images before switch statement.
+        //Sets die images
+        $('#die1').attr('src', toString(game.die1) + '.png');
+        $('#die1').attr('src', toString(game.die2) + '.png');
+
+        // Could also add window messages here
+        // Could change the order of the cases
+        // or the value returned to clean up switch statement.
+        switch(result){
+            case 0:
+                // Update player score
+                $('#' + game.next.name).text(game.next.playerScore)
+                break;
+            case 1:
+                break;
+            case 2:
+                // Deactivate Bank Button
+                break;
+            case 3:
+                break;
+        }//end of roll button switch
+
+        $('#turnScore').text(game.turnScore);
     });//end click rollButton
 
-    // Maybe create a printGame method to print all
-    // the current data about the game
-    // Could print it to a dict and use keys to mark things to update
-    // in html
-    // some type of print will give jquery access to the games live data.
-
     $('#bank').on('click', function(){
-        game.bankButton(game.current);
-        //-increment current players score on html
+        // use this line to update screen
+        //I want to insert into the players score not name
+        $('#' + game.current.name).text(game.bankButton(game.current).playerScore);
+
+        //This refers to the score of the player who pressed the button
+        // game.next.playerScore;
+
+        $('#turnScore').text(game.turnScore);
+
         //-highlight the new player that is up
     });//end click bankButton
 
