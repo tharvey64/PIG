@@ -1,9 +1,11 @@
-//List:
-//Combine some of these fucking Prototypes
-//Like roll button and roll
-//Possibly expand game size to more than 2 players
-//add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
-//currently might have more comments than code
+/*
+    List:
+    Combine some of these fucking Prototypes
+    Like roll button and roll
+    Possibly expand game size to more than 2 players
+    add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
+    currently might have more comments than code
+*/
 
 function PIG(playerName1, playerName2){
     this.player1 = new Player(playerName1);
@@ -11,7 +13,7 @@ function PIG(playerName1, playerName2){
     // tracking turn using variables
     // easiest for 2 player game
     this.current = this.player1;
-    this.next = this.player2
+    this.next = this.player2;
 
     //could use array to track turn
     //would have to add attribute to player constructor
@@ -68,7 +70,7 @@ PIG.prototype.rollButton = function(){
         this.turnScore += (die1 + die2);
         return 3;
     }//end rollButton else if
-}//end rollButton
+};//end rollButton
 
 // PIG.prototype.roll = function(){
 //     return
@@ -99,7 +101,7 @@ function Player(name){
 
 Player.prototype.bankScore = function(score){
     this.playerScore += score;
-}
+};
 
 
 $(document).ready(function(){
@@ -113,8 +115,9 @@ $(document).ready(function(){
         var result = game.rollButton(game.current);
         //Insert images before switch statement.
         //Sets die images
-        $('#die1').attr('src', toString(game.die1) + '.png');
-        $('#die1').attr('src', toString(game.die2) + '.png');
+        var die1 = $('#die1');
+        die1.attr('src', toString(game.die1) + '.png');
+        die1.attr('src', toString(game.die2) + '.png');
 
         // Could also add window messages here
         // Could change the order of the cases
