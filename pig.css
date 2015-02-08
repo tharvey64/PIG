@@ -14,7 +14,7 @@ body{
 
 #centerStage {
 	position: relative;
-	height: 82%;
+	height: 80%;
 	width: 33%;
 	background-color: pink;
 	margin: auto;
@@ -63,7 +63,7 @@ h2 {
 
 button {
 	position: relative;
-	top: 10em;
+	top: 15em;
 }
 
 
@@ -93,6 +93,5 @@ p{
 }
 
 .holder {
-	margin: auto;
 	background-color: #FFE4E1;
 }
