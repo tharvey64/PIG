@@ -6,7 +6,7 @@ body{
 	background-color: #FFB6C1;
 	height: 5em;
 	text-align: center;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	border-bottom: .25em solid white;
 	margin: auto;
@@ -63,13 +63,14 @@ h2 {
 
 button {
 	position: relative;
-	top: 35em;
+	top: 10em;
 }
 
 
 #centerStage p {
 	position: relative;
-	top: 12em;
+	bottom: 20em;
+	top: 10em;
 }
 
 p{
@@ -79,20 +80,19 @@ p{
 }
 
 #player1Score {
-	height: 15em;
 	background-color: #FFE4E1;
-	position: relative;
-	top: 10em;
 }
 
 #player2Score {
-	height: 15em;
 	background-color: #FFE4E1;
-	position: relative;
-	top: 10em;
 }
 
 #container {
 	width: 100%;
 	height: 100%;
+}
+
+.holder {
+	margin: auto;
+	background-color: #FFE4E1;
 }
