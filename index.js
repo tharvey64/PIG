@@ -11,7 +11,7 @@ function PIG(playerName1, playerName2){
     // tracking turn using variables
     // easiest for 2 player game
     this.current = this.player1;
-    this.next = this.player2
+    this.next = this.player2;
 
     //could use array to track turn
     //would have to add attribute to player constructor
@@ -38,7 +38,7 @@ PIG.prototype.newRoller = function(){
     this.current = this.next;
     this.next = temp;
     this.turnScore = 0;
-}//end of newRoller
+};//end of newRoller
 
 PIG.prototype.bankButton = function(){
     //WAITING For Selection
@@ -46,7 +46,7 @@ PIG.prototype.bankButton = function(){
         this.newRoller();
         this.turnScore = 0;
         return this.next;
-}//end of bankButton
+};//end of bankButton
 
 PIG.prototype.rollButton = function(){
     //WAITING For Selection
@@ -99,7 +99,7 @@ function Player(name){
 
 Player.prototype.bankScore = function(score){
     this.playerScore += score;
-}
+};
 
 
 $(document).ready(function(){
