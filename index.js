@@ -2,6 +2,7 @@
 //Possibly expand game size to more than 2 players
 //add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
 
+
 function PIG(playerName1, playerName2){
     this.player1 = new Player(playerName1);
     this.player2 = new Player(playerName2);
@@ -63,7 +64,7 @@ PIG.prototype.rollButton = function(){
         this.turnScore += (die1 + die2);
         return 3;
     }//end rollButton else if
-}//end rollButton
+};//end rollButton
 
 // Name pending
 // PIG.prototype.currentData = function(){
@@ -91,7 +92,7 @@ function Player(name){
 
 Player.prototype.bankScore = function(score){
     this.playerScore += score;
-}
+};
 
 
 
