@@ -6,8 +6,6 @@ function PIG(playerName1, playerName2){
     this.turnScore = 0;
 }
 
-
-
 PIG.prototype.bankButton = function(player){
     //WAITING For Selection if bank
         player.bank(turnScore);
@@ -38,6 +36,7 @@ PIG.prototype.rollResult = (die1, die2, player){
 PIG.prototype.roll = function(){
     return Math.ceil(Math.random()*6);
 }
+
 PIG.prototype.gameOver = function(){
     if(this.player1.playerScore > 99){}
     if(this.player2.playerScore > 99){}
@@ -57,7 +56,6 @@ $(document).ready(function(){
     //Create form
     //Once player names are entered
     game = new PIG($('input=[name1]').val(), $('input=[name2]').val());
-
 
     $('#roll').on('click', function(){
 
