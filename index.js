@@ -9,7 +9,7 @@ function PIG(playerName1, playerName2){
     this.die1 = 0;
     this.die2 = 0;
     this.current = this.player1;
-    this.next = this.player2
+    this.next = this.player2;
     //could use array to track turn
     //this.plyr = [player1, player2];
     this.turnScore = 0;
@@ -38,7 +38,7 @@ PIG.prototype.newRoller = function(){
 
 PIG.prototype.bankButton = function(){
     //WAITING For Selection
-        this.current.bankScore(turnScore);
+        this.current.bankScore(this.turnScore);
         this.newRoller();
         this.turnScore = 0;
         return this.next;
@@ -49,19 +49,19 @@ PIG.prototype.rollButton = function(){
         this.die1 = Math.ceil(Math.random()*6);
         this.die2 = Math.ceil(Math.random()*6);
 
-    if (die1 == 1 && die2 ==1){
+    if (this.die1 == 1 && this.die2 ==1){
         this.current.playerScore = 0;
         this.newRoller();
         return 0;
-    }else if(die1 == 1 || die2 == 1){
+    }else if(this.die1 == 1 || this.die2 == 1){
         this.newRoller();
         return 1;
-    }else if(die1 == die2){
+    }else if(this.die1 == this.die2){
         // player must roll again
-        this.turnScore += (die1 + die2);
+        this.turnScore += (this.die1 + this.die2);
         return 2;
     }else{
-        this.turnScore += (die1 + die2);
+        this.turnScore += (this.die1 + this.die2);
         return 3;
     }//end rollButton else if
 };//end rollButton
@@ -107,12 +107,11 @@ $(document).ready(function(){
         var result = game.rollButton(game.current);
         //Insert images before switch statement.
         //Sets die images
-        $('#die1').attr('src','images/' + String(game.die1) + '.png');
-        $('#die2').attr('src','images/' + String(game.die2) + '.png');
 
         // Could also add window messages here
         // Could change the order of the cases
         // or the value returned to clean up switch statement.
+        $('#bank').prop('disabled', false);
         switch(result){
             case 0:
                 // Update player score
@@ -122,19 +121,22 @@ $(document).ready(function(){
             case 1:
                 break;
             case 2:
-                // Deactivate Bank Button
+                $('#bank').prop('disabled', true)
                 break;
             case 3:
                 break;
         }//end of roll button switch
+
         console.log(String(game.turnScore));
         $('#turnScore').html(String(game.turnScore));
+        $('#dieImg1').attr('src','images/' + String(game.die1) + '.png');
+        $('#dieImg2').attr('src','images/' + String(game.die2) + '.png');
     });//end click rollButton
 
     $('#bank').on('click', function(){
         // use this line to update screen
         //I want to insert into the players score not name
-        var scoreUpdate = game.bankButton(game.current).playerScore
+        var scoreUpdate = game.bankButton(game.current).playerScore;
         $('#' + String(game.next.name) + 'Score' + ' p').text(String(scoreUpdate));
 
         //This refers to the score of the player who pressed the button
