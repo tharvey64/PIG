@@ -3,9 +3,9 @@
 //add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
 
 
-function PIG(playerName1, playerName2){
-    this.player1 = new Player(playerName1);
-    this.player2 = new Player(playerName2);
+function PIG(p1, p2){
+    this.player1 = new Player(p1);
+    this.player2 = new Player(p2);
     this.die1 = 0;
     this.die2 = 0;
     this.current = this.player1;
@@ -86,8 +86,6 @@ PIG.prototype.rollButton = function(){
 function Player(name){
     this.name = name;
     this.playerScore = 0;
-    // additional attribute to track turn
-    // this.turn = false;
 }//end Player constructor
 
 Player.prototype.bankScore = function(score){
