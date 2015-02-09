@@ -145,7 +145,7 @@ $(document).ready(function(){
         if(game.victor() != false){
             $('#bank').prop('disabled', true);
             $('#roll').prop('disabled', true);
-            if (confirm(game.victor() + "has won the game.Would you like to play again?")){
+            if (confirm(game.victor() + " has won the game.Would you like to play again?")){
                 game = new PIG("player1", "player2");
                 // insert these names into header
                 game.player1.promptName = prompt("Player 1 enter your name here: ");
