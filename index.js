@@ -76,9 +76,9 @@ PIG.prototype.rollButton = function(){
 // }
 
 PIG.prototype.victor = function(){
-    if(this.player1.playerScore > 20){
+    if(this.player1.playerScore > 99){
         return this.player1.promptName;
-    }else if(this.player2.playerScore > 20){
+    }else if(this.player2.playerScore > 99){
         return this.player2.promptName;
     }else{
         return false;
@@ -100,23 +100,17 @@ Player.prototype.bankScore = function(score){
 
 
 $(document).ready(function(){
-    //Create form
-    //Once player names are entered buttons should be activated
 
-    // game = new PIG($('input=[name1]').val(), $('input=[name2]').val());
     var game = new PIG("player1", "player2");
-    // insert these names into header
+    // insert these names into headers
     game.player1.promptName = prompt("Player 1 enter your name here: ");
     $('#name1').text(String(game.player1.promptName));
     game.player2.promptName = prompt("Player 2 enter your name here: ");
     $('#name2').text(String(game.player2.promptName));
 
     $('#roll').on('click', function(){
-        var result = game.rollButton(game.current);
-
-        // or the value returned to clean up switch statement.
         $('#bank').prop('disabled', false);
-        switch(result){
+        switch(game.rollButton(game.current)){
             case 0:
                 // Update player score
                 var resetScore = game.next.playerScore
@@ -139,21 +133,25 @@ $(document).ready(function(){
     $('#bank').on('click', function(){
         // use this line to update screen
         //I want to insert into the players score not name
-        var scoreUpdate = game.bankButton(game.current).playerScore;
-        $('#' + String(game.next.name) + 'Score' + ' p').text(String(scoreUpdate));
+        game.bankButton(game.current).playerScore;
+
+        $('#' + String(game.next.name) + 'Score' + ' p').text(String(game.next.playerScore));
 
         if(game.victor() != false){
             $('#bank').prop('disabled', true);
             $('#roll').prop('disabled', true);
-            if (confirm(game.victor() + " has won the game.Would you like to play again?")){
+            if (confirm(game.victor() + " has won the game. Would you like to play again?")){
                 game = new PIG("player1", "player2");
+
                 // insert these names into header
                 game.player1.promptName = prompt("Player 1 enter your name here: ");
                 $('#name1').text(String(game.player1.promptName));
                 game.player2.promptName = prompt("Player 2 enter your name here: ");
                 $('#name2').text(String(game.player2.promptName));
+
                 $('#player1').text(String(scoreUpdate));
                 $('#player2').text(String(scoreUpdate));
+                
                 $('#bank').prop('disabled', false);
                 $('#roll').prop('disabled', false);
             }else{
