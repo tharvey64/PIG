@@ -1,4 +1,5 @@
 
+
 //Possibly expand game size to more than 2 players
 //add Attributes to PIG: scoreToWin - #OfPlayers - #dieSides
 
@@ -74,18 +75,20 @@ PIG.prototype.rollButton = function(){
 // Consider storing the game data in a dictionary
 // }
 
-//Holds conditions for Victory so consider name revision
-//Soon to be PIG.victory() or PIG.victor()
-// PIG.prototype.gameOver = function(){
-//     if(this.player1.playerScore > 99){}
-//     if(this.player2.playerScore > 99){}
-// }//end gameOver
+PIG.prototype.victor = function(){
+    if(this.player1.playerScore > 99){
+        return this.player1.promptName;
+    }else if(this.player2.playerScore > 99){
+        return this.player2.promptName;
+    }
+}//end gameOver
 
 
 
 function Player(name){
     this.name = name;
     this.playerScore = 0;
+    this.promptName = prompt("Enter your name here: ");
 }//end Player constructor
 
 Player.prototype.bankScore = function(score){
@@ -100,14 +103,9 @@ $(document).ready(function(){
 
     // game = new PIG($('input=[name1]').val(), $('input=[name2]').val());
     game = new PIG("player1", "player2");
-
     $('#roll').on('click', function(){
         var result = game.rollButton(game.current);
-        //Insert images before switch statement.
-        //Sets die images
 
-        // Could also add window messages here
-        // Could change the order of the cases
         // or the value returned to clean up switch statement.
         $('#bank').prop('disabled', false);
         switch(result){
@@ -125,7 +123,6 @@ $(document).ready(function(){
                 break;
         }//end of roll button switch
 
-        console.log(String(game.turnScore));
         $('#turnScore').html(String(game.turnScore));
         $('#dieImg1').attr('src','images/' + String(game.die1) + '.png');
         $('#dieImg2').attr('src','images/' + String(game.die2) + '.png');
@@ -137,9 +134,6 @@ $(document).ready(function(){
         var scoreUpdate = game.bankButton(game.current).playerScore;
         $('#' + String(game.next.name) + 'Score' + ' p').text(String(scoreUpdate));
 
-        //This refers to the score of the player who pressed the button
-        // game.next.playerScore;
-        console.log(game.turnScore);
         $('#turnScore').text(String(game.turnScore));
 
         //-highlight the new player that is up
