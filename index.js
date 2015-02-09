@@ -76,10 +76,12 @@ PIG.prototype.rollButton = function(){
 // }
 
 PIG.prototype.victor = function(){
-    if(this.player1.playerScore > 99){
+    if(this.player1.playerScore > 20){
         return this.player1.promptName;
-    }else if(this.player2.playerScore > 99){
+    }else if(this.player2.playerScore > 20){
         return this.player2.promptName;
+    }else{
+        return false;
     }
 }//end gameOver
 
@@ -88,12 +90,12 @@ PIG.prototype.victor = function(){
 function Player(name){
     this.name = name;
     this.playerScore = 0;
-    this.promptName = prompt("Enter your name here: ");
+    this.promptName;
 }//end Player constructor
 
 Player.prototype.bankScore = function(score){
     this.playerScore += score;
-};
+}
 
 
 
@@ -102,7 +104,13 @@ $(document).ready(function(){
     //Once player names are entered buttons should be activated
 
     // game = new PIG($('input=[name1]').val(), $('input=[name2]').val());
-    game = new PIG("player1", "player2");
+    var game = new PIG("player1", "player2");
+    // insert these names into header
+    game.player1.promptName = prompt("Player 1 enter your name here: ");
+    $('#name1').text(String(game.player1.promptName));
+    game.player2.promptName = prompt("Player 2 enter your name here: ");
+    $('#name2').text(String(game.player2.promptName));
+
     $('#roll').on('click', function(){
         var result = game.rollButton(game.current);
 
@@ -134,6 +142,25 @@ $(document).ready(function(){
         var scoreUpdate = game.bankButton(game.current).playerScore;
         $('#' + String(game.next.name) + 'Score' + ' p').text(String(scoreUpdate));
 
+        if(game.victor() != false){
+            $('#bank').prop('disabled', true);
+            $('#roll').prop('disabled', true);
+            if (confirm(game.victor() + "has won the game.Would you like to play again?")){
+                game = new PIG("player1", "player2");
+                // insert these names into header
+                game.player1.promptName = prompt("Player 1 enter your name here: ");
+                $('#name1').text(String(game.player1.promptName));
+                game.player2.promptName = prompt("Player 2 enter your name here: ");
+                $('#name2').text(String(game.player2.promptName));
+                $('#player1').text(String(scoreUpdate));
+                $('#player2').text(String(scoreUpdate));
+                $('#bank').prop('disabled', false);
+                $('#roll').prop('disabled', false);
+            }else{
+                alert("Fuck You");
+            }//end new game statment
+
+        }
         $('#turnScore').text(String(game.turnScore));
 
         //-highlight the new player that is up
