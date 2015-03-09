@@ -26,7 +26,7 @@ body{
 }
 
 h1 {
-	margin: 1em 0 0 0;
+	margin-top: 1em;
 	font-size: 2em;
 	font-family: 'Droid Serif';
 }
@@ -72,15 +72,18 @@ button {
 
 #interface p {
 	position: relative;
-	bottom: 20em;
-	top: 8em;
+	top: 1em;
 }
 
 p{
 	font-size: 1.5em;
 	font-family: "Rock Salt";
 	color: white;
-	bottom: 2em;
+	bottom: 10em;
+}
+#currentPlayer p{
+	bottom: 5em;
+
 }
 
 #player1Score {

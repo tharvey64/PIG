@@ -1,3 +1,4 @@
+
 function Player(name) {
     this.name = name
     this.score = 0
@@ -20,9 +21,9 @@ function Pig(pOne, pTwo) {
 }
 
     Pig.prototype.nextTurn = function(){
-        var temp = this.current;
+        var swap = this.current;
         this.current = this.next;
-        this.next = temp;
+        this.next = swap;
         this.turnScore = 0;
     }
 
@@ -72,6 +73,7 @@ $(document).ready(function(){
                 $('#' + String(game.next.name) + 'Score' + ' p').html(String(piggedOut))
                 break;
             case 1:
+                $('#bank').prop('disabled', true)
                 break;
             case 2:
                 $('#bank').prop('disabled', true)
@@ -80,6 +82,7 @@ $(document).ready(function(){
                 break;
         }
         $('#turnScore').html(String(game.turnScore));
+        $('#currentPlayer').html(String(game.current.name));
         $('#dieImg1').attr('src','images/' + String(game.die1) + '.png');
         $('#dieImg2').attr('src','images/' + String(game.die2) + '.png');
 
