@@ -1,28 +1,28 @@
 body{
-	background-color: pink;
+	background-image: url("http://www.quirkbooks.com/sites/default/files/editor_uploads/original/pig_0.jpg")
 }
 #title {
-	background-color: #FFB6C1;
 	height: 5em;
 	text-align: center;
 	position: absolute;
 	width: 100%;
-	border-bottom: .25em solid black;
+	border-bottom: .25em solid white;
 	margin: auto;
+	color: pink;
 }
 
 #center {
 	position: relative;
 	height: 82%;
 	width: 33%;
-	background-color: pink;
 	margin: auto;
-	border: .25em solid black;
+	border: .25em solid white;
 	border-top: none;
 	border-bottom: none;
 	text-align: center;
 	padding: 1em;
 	top: 5.25em;
+	color: black;
 }
 
 h1 {
@@ -34,6 +34,7 @@ h1 {
 h2 {
 	font-size: 1.5em;
 	font-family: 'Rock Salt';
+	color: blue;
 }
 
 #player1 {
@@ -45,6 +46,8 @@ h2 {
 	left: 0;
 	padding: 1em;
 	float: left;
+	font-family: 'Rock Salt';
+
 }
 
 
@@ -56,6 +59,9 @@ h2 {
 	width: 20%;
 	padding: 1em;
 	float: right;
+	color: black;
+	font-family: 'Rock Salt';
+
 }
 
 button {
@@ -64,7 +70,7 @@ button {
 }
 
 
-#centerStage p {
+#center p {
 	position: relative;
 	bottom: 20em;
 	top: 10em;
