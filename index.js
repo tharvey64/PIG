@@ -10,10 +10,10 @@ function Player(name) {
     }
 
 function Pig(pOne, pTwo) {
-    this.player1 = new Player(pOne);
-    this.player2 = new Player(pTwo);
     this.die1 = 0;
     this.die2 = 0;
+    this.player1 = new Player(pOne);
+    this.player2 = new Player(pTwo);
     this.current = this.player1;
     this.next = this.player2;
     this.turnScore = 0;
@@ -59,7 +59,7 @@ function Pig(pOne, pTwo) {
             return this.player2.promptName;
         };
     };
-    //still needs to end the game.
+    //still needs to end the game, which doesn't happen at this time..
 
 $(document).ready(function(){
     var game = new Pig("player1", "player2");
