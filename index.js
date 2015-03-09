@@ -84,8 +84,8 @@ $(document).ready(function(){
         $('#dieImg2').attr('src','images/' + String(game.die2) + '.png');
 
         $('#bank').on('click', function(){
-            var bankCurrent = game.toBank(game.current).score;
-            $('#' + String(game.next.name) + 'score' + ' p').text(String(bankCurrent));
+            var banking = game.toBank(game.current).score;
+            $('#' + String(game.next.name) + 'score' + ' p').text(String(banking));
             $('#turnScore').text(String(game.turnScore));
         });
     });
