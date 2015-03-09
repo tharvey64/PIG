@@ -11,7 +11,7 @@ body{
 	color: pink;
 }
 
-#center {
+#interface {
 	position: relative;
 	height: 82%;
 	width: 33%;
@@ -66,27 +66,29 @@ h2 {
 
 button {
 	position: relative;
-	top: 10em;
+	top: .5em;
 }
 
 
-#center p {
+#interface p {
 	position: relative;
 	bottom: 20em;
-	top: 10em;
+	top: 8em;
 }
 
 p{
 	font-size: 1.5em;
 	font-family: "Rock Salt";
+	color: white;
+	bottom: 2em;
 }
 
 #player1Score {
-	background-color: #FFE4E1;
+	color: white;
 }
 
 #player2Score {
-	background-color: #FFE4E1;
+	color: white;
 }
 
 #container {
@@ -96,5 +98,5 @@ p{
 
 .holder {
 	margin: auto;
-	background-color: #FFE4E1;
+	color: white;
 }
